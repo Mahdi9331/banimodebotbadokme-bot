@@ -1,0 +1,25 @@
+name: Check Telegram Bot
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # هر ۱۵ دقیقه بیدار شو
+  workflow_dispatch:      # دکمه اجرای دستی هم داشته باش
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install libraries
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run bot
+        run: python main1.py
